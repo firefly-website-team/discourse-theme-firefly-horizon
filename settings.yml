@@ -1,0 +1,11 @@
+topic_card_high_context:
+  type: bool
+  default: true
+
+firefly_docs_url:
+  type: string
+  default: "/docs"
+
+firefly_community_url:
+  type: string
+  default: "/"

@@ -1,0 +1,33 @@
+name: Validate Discourse Theme
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate metadata
+        run: |
+          test -f about.json
+          jq -e '.name and (.name | type == "string")' about.json
+          jq -e '.authors and (.authors | type == "string")' about.json
+
+      - name: Validate importable zip structure
+        run: |
+          zip -qr /tmp/firefly-horizon.zip . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x "node_modules/*" \
+            -x "tmp/*" \
+            -x "*.zip" \
+            -x ".gitignore" \
+            -x ".DS_Store"
+          unzip -l /tmp/firefly-horizon.zip about.json

@@ -1,0 +1,36 @@
+en:
+  solved: "Solved"
+  unsolved: "Unsolved"
+  posted: "posted"
+  by_username: "by @%{username}"
+  replied: "replied"
+  vote_count:
+    one: "%{count} vote"
+    other: "%{count} votes"
+  like_count:
+    one: "%{count} like"
+    other: "%{count} likes"
+  reply_count:
+    one: "%{count} reply"
+    other: "%{count} replies"
+  header_links:
+    aria_label: "Firefly header navigation"
+    docs: "Docs"
+    community: "Community"
+  topic_list_header:
+    topic: "Topic"
+    replies: "Replies"
+    views: "Views"
+    activity: "Activity"
+  firefly_welcome_banner:
+    title: "欢迎访问Firefly论坛"
+    subtitle: "很高兴在这里见到您。如果您需要帮助，请先搜索，然后再发帖。"
+  theme_metadata:
+    description: "A Firefly forum theme based on Horizon, adjusted to match the Firefly homepage forum design."
+    settings:
+      topic_card_high_context:
+        description: "When enabled, displays additional context on topic cards including tags, excerpts, solved status, assigned users, and vote counts"
+      firefly_docs_url:
+        description: "URL for the Docs link in the header navigation."
+      firefly_community_url:
+        description: "URL for the Community link in the header navigation."
