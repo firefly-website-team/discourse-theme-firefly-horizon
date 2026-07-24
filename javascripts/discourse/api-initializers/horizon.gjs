@@ -2,7 +2,6 @@ import { apiInitializer } from "discourse/lib/api";
 import I18n, { i18n } from "discourse-i18n";
 import { themePrefix } from "virtual:theme";
 import ExperimentalScreen from "../components/experimental-screen";
-import FireflyBackgroundContainer from "../components/firefly-background-container";
 import FireflyHeaderLinks from "../components/firefly-header-links";
 import FireflyHeaderSearch from "../components/firefly-header-search";
 import FireflyLanguageSwitcher from "../components/firefly-language-switcher";
@@ -104,8 +103,6 @@ function refreshRenderedWelcomeBannerContent() {
 
 export default apiInitializer((api) => {
   applyFireflyWelcomeBannerTranslations();
-
-  api.renderInOutlet("above-site-header", FireflyBackgroundContainer);
   api.renderInOutlet("header-contents__before", FireflyMobileSidebarToggle);
   api.renderInOutlet("above-main-container", ExperimentalScreen);
   api.headerIcons.delete("language-switcher");

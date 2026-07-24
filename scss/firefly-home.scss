@@ -2,19 +2,23 @@
 
 :root {
   --firefly-accent: #ff6600;
-  --firefly-accent-strong: #f1592a;
-  --firefly-accent-soft: #fff1e8;
-  --firefly-page-bg: #f6f7fb;
-  --firefly-surface: #ffffff;
-  --firefly-border: #e6e8ef;
-  --firefly-border-strong: #d8dce6;
-  --firefly-text: #1f2933;
-  --firefly-text3: #919191;
-  --firefly-muted: #697386;
+  --firefly-accent-strong: light-dark(#f1592a, #ff6600);
+  --firefly-accent-soft: light-dark(#fff1e8, #2c2c2c);
+  --firefly-page-bg: light-dark(#f6f7fb, #313030);
+  --firefly-surface: light-dark(#ffffff, #191919);
+  --firefly-border: light-dark(#e6e8ef, #333333);
+  --firefly-border-strong: light-dark(#d8dce6, #333333);
+  --firefly-text: light-dark(#1f2933, #ffffff);
+  --firefly-text3: light-dark(#919191, #999999);
+  --firefly-header-bg: light-dark(#ffffff, #191919);
+  --firefly-header-text: light-dark(#000000, #aaaaaa);
+  --firefly-header-icon: light-dark(#919191, #544e4e);
+  --firefly-muted: light-dark(#697386, #999999);
   --firefly-shell-max-width: 1362px;
   --firefly-content-max-width: 1066px;
   --firefly-topic-meta-width: 90px;
   --firefly-topic-activity-width: 126px;
+  --background-color: light-dark(#fff2ea, #313030);
   --d-max-width: var(--firefly-content-max-width);
   --d-border-radius-large: 8px;
   --d-border-radius: 8px;
@@ -35,14 +39,14 @@ body {
   color: var(--firefly-text);
 }
 body:not(.has-full-page-chat, .wizard) {
-  background-color: #fff !important;
+  background-color: var(--background-color) !important;
 }
 body.category .list-controls {
   top: 0;
 }
 .header-sidebar-toggle button {
   .d-icon {
-    color: var(--firefly-text3);
+    color: var(--firefly-header-icon);
   }
 }
 .header-sidebar-toggle {
@@ -58,7 +62,7 @@ body.category .list-controls {
 .d-header {
   min-height: 64px;
   border-bottom: 1px solid var(--firefly-border);
-  background: var(--firefly-surface);
+  background: var(--firefly-header-bg);
 
   > .wrap {
     max-width: var(--firefly-shell-max-width);
@@ -146,7 +150,7 @@ body.category .list-controls {
 
   .firefly-language-switcher__locale {
     font-size: 16px;
-    color: #000;
+    color: var(--firefly-header-text);
   }
 }
 
@@ -198,7 +202,6 @@ body.category .list-controls {
   }
 }
 
-
 .firefly-header-links {
   display: flex;
   align-items: center;
@@ -213,7 +216,7 @@ body.category .list-controls {
   }
 
   &__item {
-    color: var(--firefly-text);
+    color: var(--firefly-header-text);
     font-size: 15px;
     font-weight: 500;
     line-height: 1;
@@ -253,12 +256,12 @@ body.category .list-controls {
 
   .d-header-icons .language-switcher-trigger {
     height: 36px;
-    border-color: #d9d9d9;
+    border-color: var(--firefly-border-strong);
     border-radius: 5px;
   }
 
   .firefly-language-switcher__locale {
-    color: #666666;
+    color: var(--firefly-header-text);
   }
 
   .firefly-header-search .icon {
@@ -290,7 +293,7 @@ body:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   #main-outlet {
     margin-top: var(--header_top);
     overflow: hidden;
-    background: var(--firefly-surface);
+    background: var(--firefly-header-bg);
     border-radius: 16px;
     box-shadow:
       0 1.63px 3.623px 0 rgba(0, 0, 0, 0.02),
@@ -410,7 +413,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
     display: block;
     margin: 14px 0 0;
     padding: 0;
-    color: #000;
+    color: var(--firefly-text);
     font-size: clamp(14px, 4.3vw, 16px);
     font-weight: 400;
     line-height: 1.5;
@@ -560,7 +563,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   }
 
   &:hover {
-    background: #fffaf6;
+    background: var(--firefly-accent-soft);
   }
 
   &.selected {
@@ -706,7 +709,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
 
 .topic-list-data.firefly-topic-list-header {
   span {
-    color: #919191;
+    color: var(--firefly-text3);
     font-size: 16px;
     font-weight: normal;
     padding-top: 5px;
