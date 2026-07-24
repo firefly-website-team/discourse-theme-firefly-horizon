@@ -37,6 +37,7 @@
       row-gap: 1em;
       border: 1px solid var(--primary-300);
       border-radius: var(--d-border-radius-large);
+      background: var(--firefly-card, var(--d-content-background));
       box-shadow: 0 0 12px 1px var(--topic-card-shadow);
     }
 
@@ -133,7 +134,7 @@
         ". category activity activity";
       column-gap: 0.75rem;
       row-gap: 0.5rem;
-      background: var(--d-content-background);
+      background: var(--firefly-card, var(--d-content-background));
       box-shadow: 0 0 12px 1px var(--topic-card-shadow);
       text-overflow: ellipsis;
       padding: 0.75em 1rem;
@@ -277,13 +278,13 @@
     &-box-inner {
       border-radius: var(--d-border-radius-large);
       border: 1px solid var(--primary-300);
-      background: var(--d-content-background);
+      background: var(--firefly-card, var(--d-content-background));
       box-shadow: 0 0 12px 1px var(--topic-card-shadow);
 
       &:hover {
         .discourse-no-touch & {
           border-color: var(--accent-color);
-          background: var(--d-content-background);
+          background: var(--firefly-card-hover, var(--d-content-background));
         }
       }
 

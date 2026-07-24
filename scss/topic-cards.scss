@@ -2,9 +2,31 @@
 
 :root {
   --d-border-radius-small: calc(var(--d-border-radius) * 0.5);
-  --topic-list-item-background-color: var(--d-content-background);
-  --topic-list-item-background-color--visited: var(--d-content-background);
+  --topic-list-item-background-color: var(
+    --firefly-card,
+    var(--d-content-background)
+  );
+  --topic-list-item-background-color--visited: var(
+    --firefly-card,
+    var(--d-content-background)
+  );
   --topic-card-shadow: rgb(var(--tertiary-rgb), 0.1);
+}
+
+@keyframes firefly-topic-card-highlight {
+  0% {
+    background-color: var(--firefly-card-hover, var(--d-hover));
+  }
+
+  100% {
+    background-color: var(--topic-list-item-background-color);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .topic-list.--d-topic-cards .topic-list-item.highlighted {
+    animation: firefly-topic-card-highlight 2.5s ease-out;
+  }
 }
 
 .badge-category__wrapper {
@@ -160,7 +182,7 @@
   &:hover {
     .discourse-no-touch & {
       box-shadow: 1px 1px 12px 2px var(--topic-card-shadow);
-      background: var(--d-content-background);
+      background: var(--firefly-card-hover, var(--d-content-background));
     }
   }
 

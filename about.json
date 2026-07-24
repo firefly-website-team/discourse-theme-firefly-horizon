@@ -31,13 +31,13 @@
       "hover": "FFF1E8"
     },
     "Firefly Dark": {
-      "primary": "ffffff",
-      "secondary": "2C2C2C",
+      "primary": "CCCCCC",
+      "secondary": "1A1A1A",
       "tertiary": "FF6600",
       "tertiary-med-or-tertiary": "FF6600",
       "selected": "2C2C2C",
       "header_background": "1A1A1A",
-      "header_primary": "ffffff",
+      "header_primary": "AAAAAA",
       "hover": "2C2C2C"
     }
   },

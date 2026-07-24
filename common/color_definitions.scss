@@ -5,59 +5,47 @@ html {
   // Background Colors
   --d-content-background: light-dark(
     oklch(from #{$secondary} calc(2 * l) c h),
-    oklch(from #{$secondary} l c h)
+    #1a1a1a
   ) !important;
 
   // HeaderColors
   --header_primary-low-mid: light-dark(
     oklch(from #{$tertiary} 73.5% calc(c * 0.5) h),
-    oklch(from #{$tertiary} l calc(c * 0.25) h)
+    #333
   ) !important;
   --header_primary-medium: light-dark(
     oklch(from #{$tertiary} 54% calc(c * 0.5) h),
-    oklch(from #{$tertiary} calc(l * 1.35) calc(c * 0.25) h)
+    #aaa
   ) !important;
 
   // Sidebar Colors
   --d-sidebar-border-color: light-dark(
     oklch(from #{$tertiary} 88% calc(c * 0.25) h),
-    oklch(from #{$tertiary} calc(l * 0.7) calc(c * 0.25) h)
+    #333
   ) !important;
   --d-sidebar-link-color: light-dark(
     oklch(from #{$tertiary} calc(l * 0.8) calc(c * 0.25) h),
-    oklch(from #{$tertiary} calc(l * 1.5) calc(c * 0.25) h)
+    #999
   ) !important;
-  --d-sidebar-active-color: #{$primary} !important;
+  --d-sidebar-active-color: #{$tertiary} !important;
   --d-sidebar-suffix-color: light-dark(
     oklch(from #{$tertiary} l calc(c * 0.9) h),
-    oklch(from #{$tertiary} l calc(c * 0.9) h)
+    #999
   ) !important;
 
   // Other Colors
   --d-selected: #{$selected} !important;
-  --d-nav-color--active: light-dark(
-    oklch(from #{$tertiary} l c h),
-    oklch(from #{$tertiary} calc(l * 1.2) c h)
-  ) !important;
-  --d-nav-color--hover: light-dark(
-    oklch(from #{$tertiary} l c h),
-    oklch(from #{$tertiary} calc(l * 1.2) c h)
-  ) !important;
-  --link-color: light-dark(
-    oklch(from #{$tertiary} l c h),
-    oklch(from #{$tertiary} calc(l * 0.95) c h)
-  ) !important;
+  --d-nav-color--active: #{$tertiary} !important;
+  --d-nav-color--hover: #{$tertiary} !important;
+  --link-color: #{$tertiary} !important;
   --link-color-hover: light-dark(
     oklch(from #{$tertiary} l c h),
-    oklch(from #{$tertiary} calc(l * 1.5) calc(c * 2.25) h)
+    #ff8533
   ) !important;
   --tertiary-hover: #{$tertiary} !important;
 
   // Search Colors
-  --search-color: light-dark(
-    oklch(from #{$tertiary} l c h),
-    oklch(from #{$tertiary} calc(l * 1.5) calc(c * 0.25) h)
-  ) !important;
+  --search-color: #{$tertiary} !important;
 
   // Button Colors
   --button-box-shadow: light-dark(
@@ -84,7 +72,7 @@ html {
   --d-sidebar-highlight-suffix-color: var(
     --d-sidebar-active-suffix-color
   ) !important;
-  --d-sidebar-highlight-color: var(--primary) !important;
+  --d-sidebar-highlight-color: var(--accent-color) !important;
   --d-sidebar-highlight-background: var(--d-selected) !important;
   --d-sidebar-section-link-icon-size: 1em !important;
   --d-hover: #{$hover} !important;

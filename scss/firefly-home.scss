@@ -1,19 +1,25 @@
 @use "lib/viewport";
 
 :root {
-  --firefly-accent: #ff6600;
-  --firefly-accent-strong: light-dark(#f1592a, #ff6600);
+  --firefly-accent: #f60;
+  --firefly-accent-strong: light-dark(#f1592a, #f60);
   --firefly-accent-soft: light-dark(#fff1e8, #2c2c2c);
   --firefly-page-bg: light-dark(#f6f7fb, #313030);
-  --firefly-surface: light-dark(#ffffff, #191919);
-  --firefly-border: light-dark(#e6e8ef, #333333);
-  --firefly-border-strong: light-dark(#d8dce6, #333333);
-  --firefly-text: light-dark(#1f2933, #ffffff);
-  --firefly-text3: light-dark(#919191, #999999);
-  --firefly-header-bg: light-dark(#ffffff, #191919);
-  --firefly-header-text: light-dark(#000000, #aaaaaa);
+  --firefly-surface: light-dark(#fff, #1a1a1a);
+  --firefly-card: light-dark(#fff, #2c2c2c);
+  --firefly-card-hover: light-dark(#fff7f2, #333);
+  --firefly-tag-bg: light-dark(#f2f3f6, #2a2a2a);
+  --firefly-card-border: light-dark(#e6e8ef, rgb(34 34 34 / 20%));
+  --firefly-border: light-dark(#e6e8ef, #333);
+  --firefly-border-strong: light-dark(#d8dce6, #333);
+  --firefly-control-border: light-dark(#c4c8d0, #a7a7a7);
+  --firefly-text: light-dark(#1f2933, #ccc);
+  --firefly-text3: light-dark(#919191, #999);
+  --firefly-header-bg: light-dark(#fff, #1a1a1a);
+  --firefly-header-text: light-dark(#000, #aaa);
   --firefly-header-icon: light-dark(#919191, #544e4e);
-  --firefly-muted: light-dark(#697386, #999999);
+  --firefly-muted: light-dark(#697386, #999);
+  --firefly-selected: light-dark(#fff1e8, #2c2c2c);
   --firefly-shell-max-width: 1362px;
   --firefly-content-max-width: 1066px;
   --firefly-topic-meta-width: 90px;
@@ -25,6 +31,26 @@
   --d-input-border-radius: 8px;
   --header_top: 30px;
   --header-offset: 65px;
+
+  // Keep Discourse-owned surfaces in the same dark hierarchy as the design.
+  --d-content-background: var(--firefly-surface) !important;
+  --d-input-bg-color: var(--firefly-surface) !important;
+  --d-sidebar-background: var(--firefly-surface) !important;
+  --d-sidebar-footer-fade: var(--firefly-surface) !important;
+  --d-sidebar-border-color: var(--firefly-border) !important;
+  --d-sidebar-link-color: var(--firefly-muted) !important;
+  --d-sidebar-active-color: var(--firefly-accent) !important;
+  --d-sidebar-highlight-color: var(--firefly-accent) !important;
+  --d-sidebar-active-background: var(--firefly-selected) !important;
+  --d-sidebar-highlight-background: var(--firefly-selected) !important;
+  --d-sidebar-highlight-hover-background: var(--firefly-card-hover) !important;
+  --d-selected: var(--firefly-selected) !important;
+  --d-hover: var(--firefly-card-hover) !important;
+  --d-nav-color--active: var(--firefly-accent) !important;
+  --d-nav-color--hover: var(--firefly-accent) !important;
+  --header_primary-low-mid: var(--firefly-border) !important;
+  --header_primary-medium: var(--firefly-header-text) !important;
+  --input-border-color: var(--firefly-border) !important;
 }
 
 html:not(:has(.has-full-page-chat)) {
@@ -38,17 +64,21 @@ a:visited {
 body {
   color: var(--firefly-text);
 }
+
 body:not(.has-full-page-chat, .wizard) {
   background-color: var(--background-color) !important;
 }
+
 body.category .list-controls {
   top: 0;
 }
+
 .header-sidebar-toggle button {
   .d-icon {
     color: var(--firefly-header-icon);
   }
 }
+
 .header-sidebar-toggle {
   button.btn-sidebar-toggle:hover,
   button.btn-sidebar-toggle:focus-visible {
@@ -66,13 +96,14 @@ body.category .list-controls {
 
   > .wrap {
     max-width: var(--firefly-shell-max-width);
-    padding-inline: 0px;
+    padding-inline: 0;
   }
 
   .d-header-icons {
-    margin-left: 0px;
+    margin-left: 0;
     align-items: center;
     gap: clamp(12px, 4vw, 12px);
+
     .btn.no-text.icon.btn-flat {
       height: 36px;
       width: 36px;
@@ -83,6 +114,12 @@ body.category .list-controls {
     height: 36px;
     border-radius: 6px;
     border: 1px solid var(--firefly-border-strong);
+  }
+
+  .d-header-icons .language-switcher-trigger,
+  .firefly-header-search .icon,
+  .d-header-icons .chat-header-icon {
+    color: var(--firefly-header-text);
   }
 
   .d-header-icons .language-switcher-trigger:hover {
@@ -97,7 +134,7 @@ body.category .list-controls {
   .contents {
     min-height: 64px;
     max-width: var(--firefly-shell-max-width);
-    margin: 0px auto;
+    margin: 0 auto;
     box-sizing: border-box;
     grid-template-columns: unset !important;
   }
@@ -121,7 +158,7 @@ body.category .list-controls {
   .header-buttons .login-button {
     border: 1px solid var(--firefly-accent);
     background: var(--firefly-accent);
-    color: #ffffff;
+    color: #fff;
     font-size: 16px;
 
     &:hover,
@@ -133,7 +170,7 @@ body.category .list-controls {
 
   .header-buttons .login-button {
     .d-icon {
-      color: #ffffff;
+      color: #fff;
     }
 
     &:hover,
@@ -167,6 +204,7 @@ body.category .list-controls {
   .language-switcher-trigger:hover {
   transition: all 0.3s;
   border-color: var(--firefly-accent);
+
   svg.d-icon-angle-down use,
   .language-switcher__locale {
     transition: all 0.3s;
@@ -182,7 +220,7 @@ body.category .list-controls {
 .d-header-icons .chat-header-icon {
   height: 36px;
   width: 36px;
-  padding: 0px;
+  padding: 0;
   box-sizing: border-box;
   border-radius: 6px;
   color: var(--firefly-text);
@@ -195,6 +233,7 @@ body.category .list-controls {
   &:focus-visible {
     transition: all 0.3s;
     background: var(--firefly-accent-soft) !important;
+
     .d-icon {
       transition: color 0.3s;
       color: var(--firefly-accent) !important;
@@ -207,6 +246,7 @@ body.category .list-controls {
   align-items: center;
   gap: clamp(12px, 3vw, 12px);
   min-width: 0;
+
   a {
     font-size: 16px;
   }
@@ -287,7 +327,7 @@ body:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   box-sizing: border-box;
 
   @include viewport.from(lg) {
-    padding-inline: 0px;
+    padding-inline: 0;
   }
 
   #main-outlet {
@@ -296,9 +336,9 @@ body:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
     background: var(--firefly-header-bg);
     border-radius: 16px;
     box-shadow:
-      0 1.63px 3.623px 0 rgba(0, 0, 0, 0.02),
-      0 4.508px 10.017px 0 rgba(0, 0, 0, 0.04),
-      0 10.853px 24.118px 0 rgba(0, 0, 0, 0.05);
+      0 1.63px 3.623px 0 rgb(0, 0, 0, 0.02),
+      0 4.508px 10.017px 0 rgb(0, 0, 0, 0.04),
+      0 10.853px 24.118px 0 rgb(0, 0, 0, 0.05);
     z-index: 100;
   }
 }
@@ -321,9 +361,9 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   border-radius: 16px;
   background: var(--firefly-surface);
   box-shadow:
-    0 1.63px 3.623px 0 rgba(0, 0, 0, 0.02),
-    0 4.508px 10.017px 0 rgba(0, 0, 0, 0.04),
-    0 10.853px 24.118px 0 rgba(0, 0, 0, 0.05);
+    0 1.63px 3.623px 0 rgb(0, 0, 0, 0.02),
+    0 4.508px 10.017px 0 rgb(0, 0, 0, 0.04),
+    0 10.853px 24.118px 0 rgb(0, 0, 0, 0.05);
 
   .svg-icon {
     color: var(--firefly-text3);
@@ -352,11 +392,12 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   .sidebar-section-link {
     min-height: 34px;
     border-radius: 6px;
-    color: var(--firefly-text);
+    color: var(--firefly-muted);
 
     &.active {
       background: var(--firefly-accent-soft);
       color: var(--firefly-accent);
+
       .svg-icon {
         color: var(--firefly-accent);
       }
@@ -366,6 +407,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
     &:focus-visible {
       background: var(--firefly-accent-soft);
       color: var(--firefly-accent);
+
       .svg-icon {
         color: var(--firefly-accent);
       }
@@ -381,10 +423,10 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   }
 
   &__wrap {
-    gap: 0px;
-    min-height: 219px;
+    gap: 0;
+    min-height: auto;
     margin: 0;
-    padding: 32px 48px 40px;
+    padding:24px 0 48px 0px;
     border-bottom: 0;
 
     @include viewport.until(md) {
@@ -433,6 +475,19 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   border-radius: 8px;
   background: var(--firefly-surface);
   box-shadow: 0 8px 24px rgb(31 41 51 / 5%);
+
+  input {
+    color: var(--firefly-text);
+
+    &::placeholder {
+      color: var(--firefly-muted);
+      opacity: 1;
+    }
+  }
+
+  .d-icon {
+    color: var(--firefly-muted);
+  }
 }
 
 .search-menu .search-input:focus-within,
@@ -445,7 +500,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
 .list-controls {
   position: sticky;
   top: var(--header-offset);
-  padding: 18px 48px 0;
+  padding: 0 48px;
   background: var(--firefly-surface);
   border-radius: 0;
 
@@ -462,9 +517,14 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
 
   .combo-box .combo-box-header {
     height: 36px;
-    border: 1px solid var(--firefly-border-strong);
+    border: 1px solid var(--firefly-control-border);
     border-radius: 6px;
     background: var(--firefly-surface);
+    color: var(--firefly-header-text);
+
+    .d-icon {
+      color: var(--firefly-header-text);
+    }
   }
 }
 
@@ -475,7 +535,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   > li button {
     min-height: 39px;
     padding: 0 14px;
-    color: var(--firefly-muted);
+    color: var(--firefly-header-text);
     line-height: 39px;
     border-radius: 0;
 
@@ -512,9 +572,6 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
 
 .topic-list.--d-topic-cards {
   width: 100%;
-
-  .topic-list-header {
-  }
 }
 
 .firefly-topic-list-header {
@@ -554,16 +611,13 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
 }
 
 .topic-list-item.--high-context {
-  border: 0;
   border-radius: 16px;
-  border: 1px solid var(--firefly-border);
-  background: var(--firefly-surface);
-
-  @include viewport.from(sm) {
-  }
+  border: 1px solid var(--firefly-card-border);
+  background: var(--firefly-card);
 
   &:hover {
-    background: var(--firefly-accent-soft);
+    border-color: var(--firefly-border);
+    background: var(--firefly-card-hover);
   }
 
   &.selected {
@@ -646,6 +700,11 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
     font-size: 12px;
   }
 
+  &__tags .discourse-tag {
+    background: var(--firefly-tag-bg);
+    color: var(--firefly-text);
+  }
+
   .topic-excerpt {
     color: var(--firefly-muted);
     font-size: 14px;
@@ -701,6 +760,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
 .list-controls .navigation-container .category-breadcrumb {
   order: 0;
 }
+
 .sidebar-footer-wrapper,
 .sidebar-footer-wrapper .sidebar-footer-container::before,
 .experimental-screen__bottom-bar {
@@ -733,7 +793,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   background: var(--firefly-accent-soft) !important;
 }
 
-@media (max-width: 767.98px) {
+@media (width <= 767.98px) {
   #main-outlet-wrapper,
   #main-outlet {
     padding-inline: 1rem !important;
@@ -743,8 +803,9 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   .d-header .contents {
     padding-inline: 0;
   }
+
   .header-sidebar-toggle button {
-    padding-left: 0px;
+    padding-left: 0;
   }
 
   .header-buttons .sign-up-button,
@@ -758,13 +819,16 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
     left: 0;
     right: 0;
   }
+
   .search-menu .menu-panel,
   .search-menu-container .menu-panel {
     padding: 1rem;
   }
+
   .welcome-banner {
     display: block;
   }
+
   .sidebar-new-topic-button__wrapper {
     display: none;
   }
@@ -783,7 +847,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
 
   .hc-topic-card > *:not(.hc-topic-card__footer),
   .hc-topic-card__category-tags {
-    padding-inline: 0px !important;
+    padding-inline: 0 !important;
   }
 
   .hc-topic-card__footer::after {
@@ -794,6 +858,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
     width: 100%;
     display: flex !important;
     justify-content: space-between;
+
     .hc-topic-card__count {
       display: block !important;
       color: var(--firefly-text3);
