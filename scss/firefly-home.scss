@@ -415,6 +415,10 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
   }
 }
 
+#main-outlet > .welcome-banner.--location-above-topic-content {
+  padding: 0 !important;
+}
+
 .welcome-banner {
   background: var(--firefly-surface);
 
