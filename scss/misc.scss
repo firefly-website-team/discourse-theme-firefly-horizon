@@ -90,6 +90,10 @@ input[type="color"]:focus,
   background: var(--d-post-aside-background);
 }
 
+.leaderboard .podium__wrapper {
+  background: var(--d-post-aside-background);
+}
+
 .discourse-reactions-list .reactions {
   gap: 0.15em;
 }
