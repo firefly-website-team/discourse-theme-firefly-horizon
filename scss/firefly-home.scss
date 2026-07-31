@@ -69,7 +69,8 @@ body:not(.has-full-page-chat, .wizard) {
   background-color: var(--background-color) !important;
 }
 
-body.category .list-controls {
+body.category .list-controls,
+body.tags-page .list-controls {
   top: 0;
 }
 
@@ -430,7 +431,7 @@ body.has-sidebar-page:not(.has-full-page-chat, .wizard) #main-outlet-wrapper {
     gap: 0;
     min-height: auto;
     margin: 0;
-    padding:24px 0 48px 0px;
+    padding: 24px 0 48px 0;
     border-bottom: 0;
 
     @include viewport.until(md) {
