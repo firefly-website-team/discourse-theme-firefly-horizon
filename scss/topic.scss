@@ -12,6 +12,13 @@
   }
 }
 
+// Keep visited links distinguishable from surrounding post text. The theme's
+// global visited-link reset is useful for navigation, but plain cooked links
+// otherwise inherit the post text color after they have been opened.
+.topic-post .cooked a[href]:not(.anchor, .lightbox):visited {
+  color: var(--firefly-accent);
+}
+
 .timeline-container .topic-timeline {
   .timeline-scrollarea {
     border-left: 1px solid var(--accent-color);
