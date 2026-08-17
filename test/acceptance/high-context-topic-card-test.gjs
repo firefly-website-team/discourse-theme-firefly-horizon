@@ -84,10 +84,13 @@ module(
       );
     });
 
-    test("hides the reply time when the topic was bumped more than a day after the last post", async function (assert) {
+    test("falls back to created_at when last_posted_at is missing", async function (assert) {
+      const createdAt = "2024-06-01T08:00:00Z";
       const topic = topicFor({
-        bumped_at: "2024-06-10T12:00:00Z",
-        last_posted_at: "2024-06-01T12:00:00Z",
+        posts_count: 1,
+        created_at: createdAt,
+        bumped_at: createdAt,
+        last_posted_at: null,
       });
 
       await render(
@@ -96,7 +99,49 @@ module(
         </template>
       );
 
-      assert.dom(".hc-topic-card__time .relative-date").doesNotExist();
+      assert.dom(".hc-topic-card__time .relative-date").exists();
+      assert
+        .dom(".hc-topic-card__time .relative-date")
+        .hasAttribute("data-time", String(new Date(createdAt).getTime()));
+    });
+
+    test("shows last posted time when the topic has no replies", async function (assert) {
+      const lastPostedAt = "2024-06-01T08:00:00Z";
+      const topic = topicFor({
+        posts_count: 1,
+        bumped_at: lastPostedAt,
+        last_posted_at: lastPostedAt,
+      });
+
+      await render(
+        <template>
+          <HighContextTopicCard @topic={{topic}} @hideCategory={{true}} />
+        </template>
+      );
+
+      assert.dom(".hc-topic-card__time .relative-date").exists();
+      assert
+        .dom(".hc-topic-card__time .relative-date")
+        .hasAttribute("data-time", String(new Date(lastPostedAt).getTime()));
+    });
+
+    test("shows last posted time when the topic was bumped more than a day after the last post", async function (assert) {
+      const lastPostedAt = "2024-06-01T12:00:00Z";
+      const topic = topicFor({
+        bumped_at: "2024-06-10T12:00:00Z",
+        last_posted_at: lastPostedAt,
+      });
+
+      await render(
+        <template>
+          <HighContextTopicCard @topic={{topic}} @hideCategory={{true}} />
+        </template>
+      );
+
+      assert.dom(".hc-topic-card__time .relative-date").exists();
+      assert
+        .dom(".hc-topic-card__time .relative-date")
+        .hasAttribute("data-time", String(new Date(lastPostedAt).getTime()));
     });
   }
 );

@@ -131,12 +131,20 @@ export default class HighContextTopicCard extends Component {
     return shortDateNoYear(new Date(this.args.topic.created_at));
   }
 
+  get lastActivityAt() {
+    return (
+      this.args.topic.last_posted_at ||
+      this.args.topic.bumped_at ||
+      this.args.topic.created_at
+    );
+  }
+
   get lastPostedAtDate() {
-    return new Date(this.args.topic.last_posted_at);
+    return this.lastActivityAt ? new Date(this.lastActivityAt) : null;
   }
 
   get lastPostedAtTitle() {
-    return longDate(this.lastPostedAtDate);
+    return this.lastPostedAtDate ? longDate(this.lastPostedAtDate) : "";
   }
 
   @action
@@ -267,8 +275,8 @@ export default class HighContextTopicCard extends Component {
         <span class="hc-topic-card__count">{{dNumber this.replyCount}}</span>
         <span class="hc-topic-card__count">{{dNumber @topic.views}}</span>
         <span class="hc-topic-card__time" title={{this.lastPostedAtTitle}}>
-          {{#if this.hasLastReplyContext}}
-            {{dFormatDate @topic.last_posted_at leaveAgo="true" format="tiny"}}
+          {{#if this.lastActivityAt}}
+            {{dFormatDate this.lastActivityAt leaveAgo="true" format="tiny"}}
           {{/if}}
         </span>
 
