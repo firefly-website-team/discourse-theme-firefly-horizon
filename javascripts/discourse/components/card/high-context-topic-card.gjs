@@ -17,6 +17,7 @@ import dAvatar from "discourse/ui-kit/helpers/d-avatar";
 import { categoryLinkHTML } from "discourse/ui-kit/helpers/d-category-link";
 import dConcatClass from "discourse/ui-kit/helpers/d-concat-class";
 import dDiscourseTags from "discourse/ui-kit/helpers/d-discourse-tags";
+import dFormatDate from "discourse/ui-kit/helpers/d-format-date";
 import dIcon from "discourse/ui-kit/helpers/d-icon";
 import dNumber from "discourse/ui-kit/helpers/d-number";
 import { i18n } from "discourse-i18n";
@@ -136,29 +137,6 @@ export default class HighContextTopicCard extends Component {
 
   get lastPostedAtTitle() {
     return longDate(this.lastPostedAtDate);
-  }
-
-  get lastPostedAtLabel() {
-    const distanceInMinutes = Math.max(
-      1,
-      Math.floor((Date.now() - this.lastPostedAtDate.getTime()) / 60000)
-    );
-    const minutesPerDay = 1440;
-    const thirtyDaysInMinutes = 30 * minutesPerDay;
-
-    if (distanceInMinutes < minutesPerDay) {
-      return i18n("dates.medium_with_ago.x_minutes", {
-        count: distanceInMinutes,
-      });
-    }
-
-    if (distanceInMinutes <= thirtyDaysInMinutes) {
-      return i18n("dates.medium_with_ago.x_days", {
-        count: Math.floor(distanceInMinutes / minutesPerDay),
-      });
-    }
-
-    return shortDateNoYear(this.lastPostedAtDate);
   }
 
   @action
@@ -290,7 +268,7 @@ export default class HighContextTopicCard extends Component {
         <span class="hc-topic-card__count">{{dNumber @topic.views}}</span>
         <span class="hc-topic-card__time" title={{this.lastPostedAtTitle}}>
           {{#if this.hasLastReplyContext}}
-            {{this.lastPostedAtLabel}}
+            {{dFormatDate @topic.last_posted_at leaveAgo="true" format="tiny"}}
           {{/if}}
         </span>
 
