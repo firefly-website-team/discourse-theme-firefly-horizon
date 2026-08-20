@@ -93,11 +93,11 @@ export default class FireflyHeaderLinks extends Component {
           class="firefly-header-links"
           aria-label={{i18n (themePrefix "header_links.aria_label")}}
         >
-          <a class="firefly-header-links__item" href={{this.docsUrl}}>
-            {{i18n (themePrefix "header_links.docs")}}
-          </a>
           <a class="firefly-header-links__item" href={{this.communityUrl}}>
             {{i18n (themePrefix "header_links.community")}}
+          </a>
+          <a class="firefly-header-links__item" href={{this.docsUrl}}>
+            {{i18n (themePrefix "header_links.docs")}}
           </a>
         </nav>
       </div>
