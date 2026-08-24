@@ -11,14 +11,6 @@ export default class FireflyHeaderLinks extends Component {
   @service currentUser;
 
   /**
-   * 控制顶部链接是否渲染。
-   * 参数：无，读取 header service 中的话题标题浮动状态。
-   */
-  get shouldRender() {
-    return !this.header.topicInfoVisible;
-  }
-
-  /**
    * 返回文档入口地址。
    * 参数：无，读取主题设置 firefly_docs_url。
    */
@@ -83,24 +75,23 @@ export default class FireflyHeaderLinks extends Component {
   }
 
   <template>
-    {{#if this.shouldRender}}
-      <div
-        class="firefly-header-links-item"
-        {{didInsert this.positionHeaderLinks}}
-        {{didUpdate this.positionHeaderLinks this.currentUser}}
+    <div
+      class="firefly-header-links-item"
+      hidden={{this.header.topicInfoVisible}}
+      {{didInsert this.positionHeaderLinks}}
+      {{didUpdate this.positionHeaderLinks this.currentUser}}
+    >
+      <nav
+        class="firefly-header-links"
+        aria-label={{i18n (themePrefix "header_links.aria_label")}}
       >
-        <nav
-          class="firefly-header-links"
-          aria-label={{i18n (themePrefix "header_links.aria_label")}}
-        >
-          <a class="firefly-header-links__item" href={{this.communityUrl}}>
-            {{i18n (themePrefix "header_links.community")}}
-          </a>
-          <a class="firefly-header-links__item" href={{this.docsUrl}}>
-            {{i18n (themePrefix "header_links.docs")}}
-          </a>
-        </nav>
-      </div>
-    {{/if}}
+        <a class="firefly-header-links__item" href={{this.communityUrl}}>
+          {{i18n (themePrefix "header_links.community")}}
+        </a>
+        <a class="firefly-header-links__item" href={{this.docsUrl}}>
+          {{i18n (themePrefix "header_links.docs")}}
+        </a>
+      </nav>
+    </div>
   </template>
 }
